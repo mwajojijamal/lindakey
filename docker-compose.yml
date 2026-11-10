@@ -1,0 +1,21 @@
+
+services:
+  lindakey-db:
+    image: postgres:16-alpine
+    container_name: lindakey-postgres
+
+    environment:
+      POSTGRES_DB: lindakey_db
+      POSTGRES_USER: lindakey_admin
+      POSTGRES_PASSWORD: lindakey_secure_password_2026
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+    restart: unless-stopped
+
+volumes:
+  pgdata:

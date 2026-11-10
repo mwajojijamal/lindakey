@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: lindakey-postgres
+    environment:
+      POSTGRES_DB: lindakey
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: SecretPassword123
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  gateway:
+    build: .
+    container_name: lindakey-gateway
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/lindakey
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=SecretPassword123
+    ports:
+      - "80:8080" # Maps standard web port 80 to the container's 8080
+    restart: unless-stopped
+
+volumes:
+  pgdata:
