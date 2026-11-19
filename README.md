@@ -1,5 +1,7 @@
 LindaKey API Gateway
 LindaKey is a lightweight, zero-trust API gateway and access management system. It acts as a secure proxy layer sitting between client-side applications and backend APIs, providing centralized authentication, real-time traffic logging, and web-based API key management.
+
+
 LindaKey is designed to sit in front of existing platforms as a reverse proxy, meaning you can integrate into you systems it without rewriting the existing platform's core code. Because it operates over standard HTTP/HTTPS, it is completely agnostic to the language or framework of the backend it protects.
 
 Core Features
